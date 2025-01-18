@@ -22,7 +22,7 @@ export class TokenInfoProvider implements Provider {
                 throw new Error("Could not identify token in message");
             }
 
-            console.log(`Fetching Info for token: ${tokenIdentifier}`);
+            console.log(`TokenInfoProvider: ${tokenIdentifier}`);
 
             // Make API request
             const isAddress = /^0x[a-fA-F0-9]{40}$/.test(tokenIdentifier)

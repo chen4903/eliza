@@ -1,1 +1,1 @@
-export * from "./tokenInfo.ts";
+export * from "./tokenInfoProvider.ts";

@@ -1,5 +1,5 @@
 import { Action, IAgentRuntime, Memory, State, HandlerCallback } from "@elizaos/core";
-import { TokenInfoProvider } from "../providers/tokenInfo.ts";
+import { TokenInfoProvider } from "../providers/tokenInfoProvider.ts";
 
 export const pairInfoTemplate = `Determine if this is a token information request. If it is one of the specified situations, perform the corresponding action:
 
