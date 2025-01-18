@@ -1,9 +1,9 @@
 import { Action, IAgentRuntime, Memory, State, HandlerCallback } from "@elizaos/core";
 import { TokenInfoProvider } from "../providers/tokenInfoProvider.ts";
 
-export const pairInfoTemplate = `Determine if this is a token information request. If it is one of the specified situations, perform the corresponding action:
+export const pairInfoTemplate = `Determine if this is a pair information request. If it is one of the specified situations, perform the corresponding action:
 
-Situation 1: "Get token information"
+Situation 1: "Get pair information"
 - Message contains: words like "info", "symbol", "pair", "information" AND a token symbol/address
 - Example: "What's the information of usdt and weth pair"
 - Action: Get the current information of the pair
@@ -79,11 +79,11 @@ export class getPairInfoAction implements Action {
             return true;
 
         } catch (error) {
-            console.error("Error in price action handler:", error);
+            console.error("Error in getting the pair Info action handler:", error);
 
             if (callback) {
                 await callback({
-                    text: `Sorry, I couldn't fetch the token price: ${error.message}`,
+                    text: `Sorry, I couldn't fetch the pair Info: ${error.message}`,
                     action: this.name
                 });
             }

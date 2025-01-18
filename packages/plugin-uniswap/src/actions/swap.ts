@@ -1,5 +1,4 @@
 import { Action, IAgentRuntime, Memory, State, HandlerCallback } from "@elizaos/core";
-import { SwapProvider } from "../providers/swapProvider.ts";
 import { ethers } from "ethers";
 import UniswapV2RouterABI from "../abi/uniswapV2Router.json";
 
@@ -16,6 +15,7 @@ Previous conversation for context:
 You are replying to: {{message}}
 `;
 
+// to save gas, I try to swap in BSC. Just for the demo
 const ALCHEMY_MAINNET_URL = 'https://binance.llamarpc.com';
 const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL)
 
@@ -45,6 +45,7 @@ export class swapTokenAction implements Action {
         return hasPairKeyword && hasToken;
     }
 
+    // we only test this swap type in BSC: swapExactETHForTokens
     private async swap(token0Address: string, token1Address: string, amount: number): Promise<string> {
         try {
             // pancake V2 router address
@@ -53,7 +54,7 @@ export class swapTokenAction implements Action {
                 0,
                 // [weth, token1]
                 ['0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c', token1Address],
-                wallet.address,
+                wallet.address, // send to myself
                 99999999999,
                 {
                     value: amount,
@@ -72,6 +73,8 @@ export class swapTokenAction implements Action {
         }
     }
 
+    // get the swap parameters from user's message
+    // we will get the token-0, token-1, and amount
     private parseSwapString(input: string): { token1: string; token2: string; amount: number } {
         const regex = /swap (0x[a-fA-F0-9]{40}) to (0x[a-fA-F0-9]{40}), amount: (\d+)/;
 
@@ -90,7 +93,6 @@ export class swapTokenAction implements Action {
     // const input = 'swap 0x1f9840a85d5af5bf1d1762f925bdaddc4201f984 to 0x1f9840a85d5af5bf1d1762f925bdaddc4201f984, amount: 100';
     // const result = parseSwapString(input);
     // console.log(result); // Output：{ token1: '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984', token2: '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984', amount: 100 }
-
 
     async handler(
         runtime: IAgentRuntime,

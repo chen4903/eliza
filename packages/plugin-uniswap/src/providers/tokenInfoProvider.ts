@@ -1,5 +1,9 @@
 import { Provider, IAgentRuntime, Memory, State } from "@elizaos/core";
 
+// To obtain the information we need through third-party services, we use Dexscreener as a demonstration
+// Function: I want to get the token address by its Symbol. For example: I type: please give me the USDT address,
+//           then I could get USDT' address. However, it should be noted that this may not be accurate as there are a
+//           large number of tokens with the same symbol present
 export class TokenInfoProvider implements Provider {
     async get(
         runtime: IAgentRuntime,
@@ -22,8 +26,6 @@ export class TokenInfoProvider implements Provider {
                 throw new Error("Could not identify token in message");
             }
 
-            console.log(`TokenInfoProvider: ${tokenIdentifier}`);
-
             // Make API request
             const isAddress = /^0x[a-fA-F0-9]{40}$/.test(tokenIdentifier)
 
@@ -37,6 +39,7 @@ export class TokenInfoProvider implements Provider {
             }
 
             const data = await response.json();
+            // We get the data in Ethereum, for the demo
             const ethereumPair = data.pairs.find(pair => pair.chainId === 'ethereum');
 
             if (ethereumPair) {

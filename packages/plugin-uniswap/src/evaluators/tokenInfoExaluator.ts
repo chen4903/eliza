@@ -16,11 +16,11 @@ export class TokenInfoEvaluator implements Evaluator {
         const hasInfoKeyword = /\b(information|info|details|symbol)\b/i.test(content);
 
         // Look for either:
-        // 1. Ethereum address
+        // 1. EVM address
         // 2. Token symbol starting with $ or #
         // 3. Token symbol after "of" or "for" (case insensitive)
         const hasToken = (
-            /0x[a-fA-F0-9]{40}/.test(content) || // Ethereum address
+            /0x[a-fA-F0-9]{40}/.test(content) || // EVM address
             /[$#][a-zA-Z]+/.test(content) || // $TOKEN or #TOKEN format
             /\b(of|for)\s+[a-zA-Z0-9]+\b/i.test(content) // "Info of TOKEN" format
         );

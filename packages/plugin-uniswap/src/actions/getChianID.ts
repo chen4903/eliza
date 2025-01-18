@@ -7,8 +7,10 @@ import {
     type Action,
 } from "@elizaos/core";
 
+// just use to show the usage of eliza framework
 import { ChainId } from '@uniswap/sdk-core'
 
+// hello world action
 export const getChainIDAction: Action = {
     name: "GET_CHAIN_ID",
     similes: ["CHAIN_ID", "chain id", "id", "ID"],
@@ -24,9 +26,11 @@ export const getChainIDAction: Action = {
         callback?: HandlerCallback
     ): Promise<boolean> => {
 
+        // We don't do a lot of things, just say have a demo
+
         if (callback) {
             await callback({
-                text: `Mainnet chain ID is: ${ChainId.MAINNET.toString()}`,
+                text: `Current chain id is: ${ChainId.MAINNET.toString()}`,
                 action: "GET_CHAIN_ID"
             });
         }
@@ -34,7 +38,7 @@ export const getChainIDAction: Action = {
         // Set the response in state to prevent further processing
         if (_state) {
             _state.responseData = {
-                text: `Mainnet chain ID is: ${ChainId.MAINNET.toString()}`,
+                text: `Current chain id is: ${ChainId.MAINNET.toString()}`,
                 action: "GET_CHAIN_ID"
             };
         }

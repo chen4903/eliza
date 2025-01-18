@@ -13,6 +13,7 @@ export * as actions from "./actions/index.ts";
 export * as evaluators from "./evaluators/index.ts";
 export * as providers from "./providers/index.ts";
 
+// Eliza's Minimization Demo on Token and Uniswap
 export const uniswapPlugin: Plugin = {
     name: "uniswap",
     description: "This is the demo of uniswap plugin",
