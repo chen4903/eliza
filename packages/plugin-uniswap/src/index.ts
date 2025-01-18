@@ -1,6 +1,9 @@
 import { Plugin } from "@elizaos/core";
 import { getChainIDAction } from "./actions/getChianID.ts";
 import { getPriceAction } from "./actions/getPrice.ts";
+import { getPairInfoAction } from "./actions/getPairInfo.ts";
+import { TokenInfoProvider } from "./providers/tokenInfo.ts";
+import { TokenInfoEvaluator } from "./evaluators/tokenInfoExaluator.ts";
 // import { factEvaluator } from "./evaluators/fact.ts";
 // import { timeProvider } from "./providers/time.ts";
 
@@ -11,9 +14,9 @@ export * as providers from "./providers/index.ts";
 export const uniswapPlugin: Plugin = {
     name: "uniswap",
     description: "This is the demo of uniswap plugin",
-    actions: [getChainIDAction, getPriceAction],
-    // evaluators: [factEvaluator],
-    // providers: [timeProvider],
+    actions: [getChainIDAction, getPriceAction, new getPairInfoAction()],
+    evaluators: [new TokenInfoEvaluator()],
+    providers: [new TokenInfoProvider()],
 };
 
 // export default bootstrapPlugin;
