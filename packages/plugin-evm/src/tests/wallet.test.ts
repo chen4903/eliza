@@ -14,7 +14,7 @@ import { WalletProvider } from "../providers/wallet";
 
 const customRpcUrls = {
     mainnet: "custom-rpc.mainnet.io",
-    base: "custom-rpc.base.io",
+    arbitrum: "custom-rpc.base.io",
     iotex: "custom-rpc.iotex.io",
 };
 

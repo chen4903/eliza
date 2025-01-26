@@ -13,8 +13,6 @@ import { TwitterClientInterface } from "@elizaos/client-twitter";
 import { FarcasterClientInterface } from "@elizaos/client-farcaster";
 // import { ReclaimAdapter } from "@elizaos/plugin-reclaim";
 import { PrimusAdapter } from "@elizaos/plugin-primus";
-import { devSchoolPlugin } from "@elizaos/plugin-devschool";
-import { uniswapPlugin } from "@elizaos/plugin-uniswap";
 
 import {
     AgentRuntime,
@@ -775,10 +773,6 @@ export async function createAgent(
         character,
         // character.plugins are handled when clients are added
         plugins: [
-            // @levi Please add your plugins here
-            uniswapPlugin,
-            // dexScreenerPlugin,
-            devSchoolPlugin,
             bootstrapPlugin,
             getSecret(character, "DEXSCREENER_API_KEY")
                 ? dexScreenerPlugin

@@ -1,1 +1,0 @@
-// Files added solely to maintain project consistency, of course, we can add content to enhance the functionality of AI agent
